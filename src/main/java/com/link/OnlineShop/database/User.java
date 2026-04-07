@@ -1,6 +1,13 @@
 package com.link.OnlineShop.database;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="users")
 public class User {
+    //POJO -> plain old data object, o entitate
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String email;
     private String password;

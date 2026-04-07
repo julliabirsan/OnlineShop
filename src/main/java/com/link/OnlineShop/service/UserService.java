@@ -2,12 +2,10 @@ package com.link.OnlineShop.service;
 
 import com.link.OnlineShop.database.User;
 import com.link.OnlineShop.database.UserDao;
-import com.link.OnlineShop.database.UserRowMapper;
 import com.link.OnlineShop.exceptions.UserException;
 import com.link.OnlineShop.security.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
