@@ -1,4 +1,4 @@
-package com.link.OnlineShop;
+package com.link.OnlineShop.database;
 
 import org.springframework.jdbc.core.RowMapper;
 
