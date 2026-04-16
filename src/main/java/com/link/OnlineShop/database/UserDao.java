@@ -27,6 +27,15 @@ public class UserDao {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
+
+        Address dummyAddress = new Address();
+        dummyAddress.setStreetName("dummy address name");
+        dummyAddress.setStreetNo(0);
+        dummyAddress.setBuilding("dummy building");
+        dummyAddress.setCity("dummy city");
+        dummyAddress.setCountry("dummy country");
+
+        user.setAddress(dummyAddress);
         em.persist(user);
     }
 }
