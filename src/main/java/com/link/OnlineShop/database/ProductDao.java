@@ -3,17 +3,12 @@ package com.link.OnlineShop.database;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class ProductDao {
+public interface ProductDao extends CrudRepository<Product, Integer> {
 
-    @PersistenceContext
-    private EntityManager em;
-
-    public List<Product> findAll(){
-        return em.createNativeQuery("select * from product", Product.class).getResultList();
-    }
 }
