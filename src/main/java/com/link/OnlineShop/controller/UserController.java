@@ -1,13 +1,17 @@
 package com.link.OnlineShop.controller;
 
+import com.link.OnlineShop.database.Product;
 import com.link.OnlineShop.exceptions.UserException;
 import com.link.OnlineShop.security.UserSession;
+import com.link.OnlineShop.service.ProductService;
 import com.link.OnlineShop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -16,7 +20,12 @@ public class UserController {
     UserService userService;
 
     @Autowired
+    ProductService productService;
+
+    @Autowired
     UserSession userSession;
+
+    private int cartItems = 0;
 
     @GetMapping("register-form")
     public ModelAndView registerAction(@RequestParam("email") String email,
@@ -56,9 +65,35 @@ public class UserController {
 
     @GetMapping("dashboard")
     public ModelAndView dashboard(){
-        if (userSession.getUserId() == 0){
-           return new ModelAndView("redirect:/");
-        }
-        return new ModelAndView("dashboard");
+//        if (userSession.getUserId() == 0){
+//           return new ModelAndView("redirect:/");
+//        }
+
+        ModelAndView modelAndView = new ModelAndView("dashboard");
+        List<Product> productDBList = productService.findAllProducts();
+        modelAndView.addObject("productList", productDBList);
+        modelAndView.addObject("cartItemsNo", cartItems);
+
+        return modelAndView;
+    }
+
+    @GetMapping("addToCart")
+    public ModelAndView addToCart(){
+//        if (userSession.getUserId() == 0){
+//            return new ModelAndView("redirect:/");
+//        }
+
+        ModelAndView modelAndView = new ModelAndView("dashboard");
+        cartItems++;
+        List<Product> productDBList = productService.findAllProducts();
+        modelAndView.addObject("productList", productDBList);
+        modelAndView.addObject("cartItemsNo", cartItems);
+        return modelAndView;
+    }
+
+    @GetMapping("logout")
+    public ModelAndView logout(){
+//        userSession.setUserId(0);
+        return new ModelAndView("redirect:/");
     }
 }
