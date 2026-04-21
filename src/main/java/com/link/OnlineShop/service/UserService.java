@@ -34,7 +34,10 @@ public class UserService {
 
             //daca nu, sa-l adaugam in bd
             //jdbcTemplate.update("insert into users values(null, ?,?)", email, password1);
-            userDao.save(email, password1);
+            User user = new User();
+            user.setEmail(email);
+            user.setPassword(password1);
+            userDao.save(user);
         }
     }
 

@@ -13,6 +13,6 @@ public class ProductService {
     ProductDao productDao;
 
     public List<Product> findAllProducts(){
-        return productDao.findAll();
+        return (List<Product>) productDao.findAll();
     }
 }
