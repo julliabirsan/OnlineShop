@@ -39,35 +39,65 @@
 Bine ai venit!
 Daca esti autentificat vezi aceasta pagina cu produse!!!!
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>brand</th>
-            <th>price</th>
-            <th>category</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="p:${productList}">
-            <td th:text="${p.id}"></td>
-            <td th:text="${p.name}"></td>
-            <td th:text="${p.brand}"></td>
-            <td th:text="${p.price}"></td>
-            <td th:text="${p.category}"></td>
+<div class = "container mt4">
+    <div class="mx-auto" style="max-width: 700px;">
 
-            <td>
-                <form action="/addToCart">
-                    <input name="productId" hidden th:value="${p.id}">
-                    <button type="submit" class="btn btn-primary">
-                        Adauga in cos
-                    </button>
-                </form>
-            </td>
-        </tr>
-    </tbody>
-</table>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>brand</th>
+                    <th>price</th>
+                    <th>category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p:${productList}">
+                    <td th:text="${p.id}"></td>
+                    <td th:text="${p.name}"></td>
+                    <td th:text="${p.brand}"></td>
+                    <td th:text="${p.price}"></td>
+                    <td th:text="${p.category}"></td>
+
+                    <td>
+                        <form action="/addToCart">
+                            <input name="productId" hidden th:value="${p.id}">
+                            <button type="submit" class="btn btn-primary">
+                                Adauga in cos
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${currentPage==0} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/dashboard(page=${currentPage-1})}">
+                        Previous
+                    </a>
+                </li>
+
+                <li class="page-item" th:each="i:${#numbers.sequence(0,totalPages-1)}"
+                    th:classappend="${i==currentPage} ? 'active'">
+                    <a class="page-link"
+                       th:href="@{/dashboard(page=${i})}"
+                       th:text="${i+1}"></a>
+                </li>
+
+                <li class="page-item" th:classappend="${currentPage==totalPages-1}?'disabled'">
+                    <a class="page-link" th:href="@{/dashboard(page=${currentPage+1})}">
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+</div>
+</div>
 
 </body>
 </html>

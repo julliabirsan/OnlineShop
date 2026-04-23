@@ -6,6 +6,7 @@ import com.link.OnlineShop.security.UserSession;
 import com.link.OnlineShop.service.ProductService;
 import com.link.OnlineShop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,15 +65,18 @@ public class UserController {
     }
 
     @GetMapping("dashboard")
-    public ModelAndView dashboard(){
+    public ModelAndView dashboard(@RequestParam(defaultValue = "0") int page){
 //        if (userSession.getUserId() == 0){
 //           return new ModelAndView("redirect:/");
 //        }
 
         ModelAndView modelAndView = new ModelAndView("dashboard");
-        List<Product> productDBList = productService.findAllProducts();
-        modelAndView.addObject("productList", productDBList);
+        //List<Product> productDBList = productService.findAllProducts();
+        Page<Product> productPage = productService.getProductsPage(page, 5);
+        modelAndView.addObject("productList", productPage);
         modelAndView.addObject("cartItemsNo", cartItems);
+        modelAndView.addObject("currentPage", page);
+        modelAndView.addObject("totalPages", productPage.getTotalPages());
 
         return modelAndView;
     }
