@@ -1,6 +1,9 @@
 package com.link.OnlineShop.database;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +17,10 @@ public class Category {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    //@JoinColumn(name = "category_id")
+    //@JsonBackReference
+    @JsonIgnore
     private List<Product> products = new ArrayList<>();
 
     public int getId() {

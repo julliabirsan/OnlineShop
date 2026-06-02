@@ -1,5 +1,7 @@
 package com.link.OnlineShop.service;
 
+import com.link.OnlineShop.database.Category;
+import com.link.OnlineShop.database.CategoryDao;
 import com.link.OnlineShop.database.Product;
 import com.link.OnlineShop.database.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +22,13 @@ public class ProductService {
 
     public Page<Product> getProductsPage(int page, int size){
         return productDao.findAll(PageRequest.of(page, size));
+    }
+
+    public Product saveProduct(Product product){
+        return productDao.save(product);
+    }
+
+    public void deleteProductById(int id){
+        productDao.deleteById(id);
     }
 }
