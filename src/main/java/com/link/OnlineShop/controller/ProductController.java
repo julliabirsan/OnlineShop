@@ -58,6 +58,7 @@ public class ProductController {
         product.setName(productRequest.getName());
         product.setBrand(productRequest.getBrand());
         product.setPrice(productRequest.getPrice());
+        product.setImgSrc(productRequest.getImgSrc());
         product.setCategory(category);
         return productService.saveProduct(product);
     }

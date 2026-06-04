@@ -5,6 +5,7 @@ public class ProductRequest {
     private String brand;
     private double price;
     private String categoryName;
+    private String imgSrc;
 
     public String getName() {
         return name;
@@ -36,5 +37,13 @@ public class ProductRequest {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
     }
 }

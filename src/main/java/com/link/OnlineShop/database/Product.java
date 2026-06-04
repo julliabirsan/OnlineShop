@@ -16,6 +16,7 @@ public class Product {
     private String name;
     private String brand;
     private double price;
+    private String imgSrc;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -61,5 +62,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
     }
 }

@@ -61,6 +61,9 @@ Daca esti autentificat vezi aceasta pagina cu produse!!!!
                     <td th:text="${p.category}"></td>
 
                     <td>
+                        <img th:src="@{${p.imgSrc}}">
+                    </td>
+                    <td>
                         <form action="/addToCart">
                             <input name="productId" hidden th:value="${p.id}">
                             <button type="submit" class="btn btn-primary">
