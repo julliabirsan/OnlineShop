@@ -64,10 +64,19 @@ Daca esti autentificat vezi aceasta pagina cu produse!!!!
                         <img th:src="@{${p.imgSrc}}">
                     </td>
                     <td>
-                        <form action="/addToCart">
+                        <form th:action="@{/addToCart}">
                             <input name="productId" hidden th:value="${p.id}">
+                            <input type="hidden" name="page" th:value="${currentPage}">
                             <button type="submit" class="btn btn-primary">
                                 Adauga in cos
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/details">
+                            <input name="productId" hidden th:value="${p.id}">
+                            <button type="submit" class="btn btn-primary">
+                                Detalii
                             </button>
                         </form>
                     </td>

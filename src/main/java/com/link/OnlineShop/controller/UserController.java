@@ -82,16 +82,18 @@ public class UserController {
     }
 
     @GetMapping("addToCart")
-    public ModelAndView addToCart(){
+    public ModelAndView addToCart(@RequestParam(defaultValue = "0") int page){
 //        if (userSession.getUserId() == 0){
 //            return new ModelAndView("redirect:/");
 //        }
 
         ModelAndView modelAndView = new ModelAndView("dashboard");
         cartItems++;
-        List<Product> productDBList = productService.findAllProducts();
-        modelAndView.addObject("productList", productDBList);
+        Page<Product> productDBList = productService.getProductsPage(page, 5);
+        modelAndView.addObject("productList", productDBList.getContent());
         modelAndView.addObject("cartItemsNo", cartItems);
+        modelAndView.addObject("currentPage", page);
+        modelAndView.addObject("totalPages", productDBList.getTotalPages());
         return modelAndView;
     }
 
@@ -99,5 +101,15 @@ public class UserController {
     public ModelAndView logout(){
 //        userSession.setUserId(0);
         return new ModelAndView("redirect:/");
+    }
+
+    @GetMapping("/details")
+    public ModelAndView getProductDetails(@RequestParam("productId") int productId){
+        ModelAndView modelAndView = new ModelAndView("productDetails");
+        //verificare user session
+
+        Product p = productService.findProductById(productId);
+        modelAndView.addObject("p", p);
+        return modelAndView;
     }
 }
