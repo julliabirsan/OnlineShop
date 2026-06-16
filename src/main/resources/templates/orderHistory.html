@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
-
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/dashboard">My first online shop</a>
@@ -36,34 +36,31 @@
   </div>
 </nav>
 
+IStoric comenzi
+
 <div class = "container mt4">
   <div class="mx-auto" style="max-width: 700px;">
 
     <table class="table table-striped">
       <thead>
-      <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>brand</th>
-        <th>price</th>
-        <th>category</th>
-      </tr>
+        <tr>
+          <th>id</th>
+          <th>address</th>
+        </tr>
       </thead>
       <tbody>
-      <tr th:object="${p}">
-        <td th:text="${p.id}"></td>
-        <td th:text="${p.name}"></td>
-        <td th:text="${p.brand}"></td>
-        <td th:text="${p.price}"></td>
-        <td th:text="${p.category}"></td>
-
-        <td>
-          <img th:src="@{${p.imgSrc}}">
+        <tr th:each="order:${orders}">
+          <td th:text="${order.id}"></td>
+          <td th:text="${order.address}">
+          <td>
+            <form action="/orderDetails">
+              <input name="orderId" hidden th:value="${order.id}">
+              <button type="submit">Detalii</button>
+            </form>
         </td>
-      </tr>
+        </tr>
       </tbody>
-    </table>
-
+</table>
 
 </body>
 </html>

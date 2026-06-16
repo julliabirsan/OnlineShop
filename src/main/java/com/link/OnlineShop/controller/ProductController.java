@@ -8,6 +8,7 @@ import com.link.OnlineShop.service.CategoryService;
 import com.link.OnlineShop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,4 +70,6 @@ public class ProductController {
         productService.deleteProductById(id);
         return "ok delete";
     }
+
+
 }
